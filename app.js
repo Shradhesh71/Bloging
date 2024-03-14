@@ -17,7 +17,7 @@ const app = express();
 const PORT =  7000;
 // const PORT = process.env.PORT || 7000;
 
-mongoose.connect('mongodb+srv://shradesh71:newone71@cluster0.4tegtua.mongodb.net/Bloging?retryWrites=true')
+mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
     console.warn("connect...");
 });
