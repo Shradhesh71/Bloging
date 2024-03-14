@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Blog</title>
+    <style>
+      .mt-2{
+        padding: 5px;
+      }
+      .mt-2:hover{
+        background:rgb(203, 239, 239) ;
+        border-radius: 11px;
+      }
+    </style>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+
+    <div class="container mt-4 mb-3">
+        <h1 class="heading"><%=blog.title%></h1>
+        <h5> <%= blog.createdAt %></h5>
+        <img src="<%= blog.coverImageURL %>" width="600px" height="400px" alt="...">
+        <p class="mt-4"><%=blog.body%></p>
+
+    </div>
+
+    <div class="container mt-4">
+        <img src="<%= blog.createdBy.profileImageURL %>" width="50px" /> <%=
+        blog.createdBy.fullName %>
+    </div>
+
+    <div class="container my-5">
+        <h1>Comments (<%= comments.length %>)</h1>
+        <% if (locals.user) { %>
+        <form action="/blog/comment/<%= blog._id %>" method="post">
+          <div class="mb-3">
+            <input
+              type="text"
+              name="content"
+              class="form-control"
+              placeholder="Enter your comment"
+            />
+            <button class="btn btn-sm btn-primary mt-3" type="submit">Add</button>
+          </div>
+        </form>
+  
+        <% } %>
+        <div class="container-lg" style="border: 1.8px solid black;border-radius: 20px;">
+          <% comments.forEach(comment => { %>
+          <div class="container mt-2 border-1 rounded border">
+            <img src="<%= comment.createdBy.profileImageURL %>" width="40px" style="border-radius: 50%;float: right;"/>
+            <b style="cursor: pointer;"><%= comment.createdBy.fullName %></b>
+            <pre><%= comment.content %></pre>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+
+    <%- include("./partials/script") %>
+</body>
+</html>

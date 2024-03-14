@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <title>Profile</title>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+
+    <div class="card mb-3 mt-4" style="max-width: 640px;margin-left: 50px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="<%= user.profileImageURL %>" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= user.fullName %></h5>
+              <h6 class="card-text" style="cursor: pointer;"><%= user.email %></h6>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-body-secondary">Last updated <%=  user.updatedAt %> mins ago</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <%- include("./partials/script") %>
+</body>
+</html>
